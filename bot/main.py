@@ -20,7 +20,7 @@ bot = lightbulb.BotApp(
 async def ping(ctx: lightbulb.Context) -> None:
   await ctx.respond("Pong!")
 
-bot.load_extensions_from("./extensions/", must_exist=True)
+bot.load_extensions("extensions.info")
 
 if __name__ == "__main__":
   if os.name != "nt":
