@@ -42,17 +42,17 @@ async def userinfo(ctx: lightbulb.Context) -> None:
     .add_field(
       "Bot?",
       str(target.is_bot),
-      inline=True,
+      inline=False,
     )
     .add_field(
       "Created account on",
       f"<t:{created_at}:d>\n(<t:{created_at}:R>)",
-      inline=True,
+      inline=False,
     )
     .add_field(
       "Joined server on",
       f"<t:{joined_at}:d>\n(<t:{joined_at}:R>)",
-      inline=True,
+      inline=False,
     )
     .add_field(
       "Roles",
