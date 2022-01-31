@@ -7,6 +7,7 @@ weather_plugin = lightbulb.Plugin("Weather")
 @lightbulb.option(
   "location",
   "Gets the location to show its weather.",
+  modifier=lightbulb.commands.OptionModifier.CONSUME_REST,
   type=str,
   required=True
 )
@@ -20,13 +21,13 @@ async def weather(ctx: lightbulb.Context) -> None:
   weather = await client.find(ctx.options.location)
 
   if weather.current.temperature >= 30:
-    response = "The weather in " + str(ctx.options.location) + " is " + str(weather.current.temperature) + "° 🥵"
+    response = ":man_mage: The weather in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥵"
   
   elif weather.current.temperature <= 10:
-    response = "The weather in " + str(ctx.options.location) + " is " + str(weather.current.temperature) + "° 🥶"
+    response = ":man_mage: The weather in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥶"
 
   else: 
-    response = "The weather in " + str(ctx.options.location) + " is " + str(weather.current.temperature) + "° 😎"
+    response = ":man_mage: The weather in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 😎"
 
   await ctx.respond(response)
 
