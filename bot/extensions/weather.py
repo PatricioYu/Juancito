@@ -1,18 +1,19 @@
-import lightbulb
 import python_weather
+
+import lightbulb
 
 weather_plugin = lightbulb.Plugin("Weather")
 
 @weather_plugin.command
 @lightbulb.option(
   "location",
-  "Gets the location to show its weather.",
+  "Gets the location.",
   modifier=lightbulb.commands.OptionModifier.CONSUME_REST,
   type=str,
   required=True
 )
 @lightbulb.command(
-  "weather", "Gets the weather from a specific location the user inputs.")
+  "weather", "Gets the weather from a specific location the user input.")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
 
 async def weather(ctx: lightbulb.Context) -> None:
