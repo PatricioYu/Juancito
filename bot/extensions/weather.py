@@ -20,16 +20,16 @@ async def weather(ctx: lightbulb.Context) -> None:
   client = python_weather.Client(format=python_weather.METRIC)
 
   weather = await client.find(ctx.options.location)
-  
+
   # Different responses depending on the temperature given
   if weather.current.temperature >= 30:
-    response = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥵"
+    res = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥵"
   elif weather.current.temperature <= 10:
-    response = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥶"
+    res = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥶"
   else: 
-    response = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 😎"
+    res = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 😎"
 
-  await ctx.respond(response)
+  await ctx.respond(res)
 
   await client.close()
 
