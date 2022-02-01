@@ -21,7 +21,8 @@ async def ping(ctx: lightbulb.Context) -> None:
   await ctx.respond("Pong!")
 
 bot.load_extensions("extensions.info", "extensions.weather", "extensions.mod")
-# Error handler
+
+# Error handlers
 @bot.listen(lightbulb.CommandErrorEvent)
 async def on_error(event: lightbulb.CommandErrorEvent) -> None:
   if isinstance(event.exception, lightbulb.CommandInvocationError):
@@ -30,22 +31,20 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
 
   exception = event.exception.__cause__ or event.exception
 
-  # Error due to not being the owner of the bot.
   if isinstance(exception, lightbulb.NotOwner):
     await event.context.respond("You are not the owner of this bot.")
-  # Error raised due to cooldown timer not finished.
+  elif isinstance(exception, lightbulb.MissingRequiredPermission):
+    await event.context.respond("You don't have permission to use this command")
   elif isinstance(exception, lightbulb.CommandIsOnCooldown):
     await event.context.respond(f"This command is on cooldown. Retry in `{exception.retry_after:.2f}` seconds.")
-  # Error raised due to the lack of required options.
   elif isinstance(exception, lightbulb.NotEnoughArguments):
     await event.context.respond("Not enough arguments")
-  # Error raised due to non existent command used.
   elif isinstance(exception, lightbulb.CommandNotFound):
     await event.context.respond("That command doesn't exist")
-  
   else:
     raise exception
 
+# For non windows users
 if __name__ == "__main__":
   if os.name != "nt":
     import uvloop

@@ -21,7 +21,7 @@ async def weather(ctx: lightbulb.Context) -> None:
 
   weather = await client.find(ctx.options.location)
 
-  # Different responses depending on the temperature given
+  # Different responses in relation to the temperature
   if weather.current.temperature >= 30:
     res = ":man_mage: The temperature in " + ctx.options.location + " is " + str(weather.current.temperature) + "° 🥵"
   elif weather.current.temperature <= 10:
