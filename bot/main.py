@@ -44,7 +44,7 @@ async def on_error(event: lightbulb.CommandErrorEvent) -> None:
   else:
     raise exception
 
-# For non windows users
+# For UNIX-like system users
 if __name__ == "__main__":
   if os.name != "nt":
     import uvloop
