@@ -34,7 +34,7 @@ async def weather(ctx: lightbulb.Context) -> None:
 )
 @lightbulb.command("temp", "Gets the temperature from a specific location.")
 @lightbulb.implements(lightbulb.PrefixSubCommand, lightbulb.SlashSubCommand)
-async def weather(ctx: lightbulb.Context) -> None:
+async def temp(ctx: lightbulb.Context) -> None:
   client = python_weather.Client(format=python_weather.METRIC)
 
   weather = await client.find(ctx.options.location)
@@ -48,6 +48,25 @@ async def weather(ctx: lightbulb.Context) -> None:
     res = f":man_mage: The temperature in {ctx.options.location} is {weather.current.temperature}° 😎"
 
   await ctx.respond(res)
+
+  await client.close()
+
+@weather.child
+@lightbulb.option(
+  "location",
+  "Gets the location.",
+  modifier=lightbulb.commands.OptionModifier.CONSUME_REST,
+  type=str,
+  required=True
+)
+@lightbulb.command("humidity", "Gets the humidity of the specified location")
+@lightbulb.implements(lightbulb.PrefixSubCommand, lightbulb.SlashSubCommand)
+async def humidity(ctx: lightbulb.Context) -> None:
+  client = python_weather.Client(format=python_weather.METRIC)
+
+  weather = await client.find(ctx.options.location)
+
+  await ctx.respond(f"The humidity in {ctx.options.location} is {weather.current.humidity}%")
 
   await client.close()
 
