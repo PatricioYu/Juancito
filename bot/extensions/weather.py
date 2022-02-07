@@ -1,4 +1,3 @@
-from turtle import title
 import python_weather
 
 import hikari
