@@ -22,7 +22,7 @@ async def ping(ctx: lightbulb.Context) -> None:
 
 bot.load_extensions("extensions.info", "extensions.weather", "extensions.mod")
 
-# Error handlers
+""" Error handlers """
 @bot.listen(lightbulb.CommandErrorEvent)
 async def on_error(event: lightbulb.CommandErrorEvent) -> None:
   if isinstance(event.exception, lightbulb.CommandInvocationError):
