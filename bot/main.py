@@ -1,4 +1,5 @@
 import os
+from pickle import TRUE
 
 import dotenv
 import hikari
@@ -11,7 +12,8 @@ bot = lightbulb.BotApp(
   prefix="!",
   banner=None,
   intents=hikari.Intents.ALL,
-  default_enabled_guilds=(902692574601543700,)
+  default_enabled_guilds=(902692574601543700,),
+  case_insensitive_prefix_commands = True
 )
 
 @bot.command

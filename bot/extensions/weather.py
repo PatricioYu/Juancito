@@ -5,7 +5,7 @@ import lightbulb
 
 weather_plugin = lightbulb.Plugin("Weather")
 
-""" Weather command"""
+""" Weather command """
 @weather_plugin.command
 @lightbulb.option(
   "location",
@@ -73,7 +73,7 @@ async def humidity(ctx: lightbulb.Context) -> None:
 
   await client.close()
 
-""" Forecast subcommand"""
+""" Forecast subcommand """
 @weather.child
 @lightbulb.option(
   "location",
